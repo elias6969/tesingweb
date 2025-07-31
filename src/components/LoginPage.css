@@ -1,12 +1,6 @@
 .login-bg {
   min-height: 100vh;
-  background: 
-    linear-gradient(45deg, #000000 25%, transparent 25%),
-    linear-gradient(-45deg, #000000 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #001100 75%),
-    linear-gradient(-45deg, transparent 75%, #001100 75%),
-    radial-gradient(circle at center, rgba(0, 255, 0, 0.1) 0%, transparent 70%);
-  background-size: 30px 30px;
+  background: var(--bg-color);
   position: relative;
   display: flex;
   justify-content: center;
@@ -24,8 +18,8 @@
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 255, 0, 0.03) 2px,
-    rgba(0, 255, 0, 0.03) 4px
+    var(--primary-color) 2px,
+    var(--primary-color) 4px
   );
   pointer-events: none;
 }
@@ -47,28 +41,28 @@
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: #ff0000;
-  color: #ffffff;
+  background: var(--danger-color);
+  color: var(--text-color);
   padding: 5px 15px;
   font-size: 12px;
   font-weight: bold;
-  border: 2px solid #ffffff;
+  border: 2px solid var(--text-color);
   animation: blink 2s infinite;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-primary);
 }
 
 .login-box {
-  background: linear-gradient(145deg, #001100, #000000);
-  border: 3px solid #00ff00;
+  background: var(--card-bg);
+  border: 3px solid var(--border-color);
   padding: 2.5rem;
   box-shadow: 
-    0 0 50px rgba(0, 255, 0, 0.5),
-    inset 0 0 30px rgba(0, 255, 0, 0.1);
+    0 0 50px var(--primary-color),
+    inset 0 0 30px var(--primary-color);
   max-width: 400px;
   width: 90%;
   animation: slideFade 0.5s ease;
   position: relative;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-primary);
 }
 
 .login-box::before {
@@ -77,22 +71,22 @@
   top: -15px;
   left: 50%;
   transform: translateX(-50%);
-  background: #000000;
-  color: #00ff00;
+  background: var(--bg-color);
+  color: var(--primary-color);
   padding: 3px 10px;
   font-size: 10px;
   font-weight: bold;
-  border: 1px solid #00ff00;
-  text-shadow: 0 0 5px #00ff00;
+  border: 1px solid var(--primary-color);
+  text-shadow: 0 0 5px var(--primary-color);
 }
 
 .login-title {
   text-align: center;
-  color: #00ff00;
+  color: var(--primary-color);
   font-size: 1.3rem;
   margin-bottom: 1.5rem;
-  text-shadow: 0 0 15px #00ff00;
-  font-family: 'Comic Sans MS', cursive;
+  text-shadow: 0 0 15px var(--primary-color);
+  font-family: var(--font-secondary);
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -105,11 +99,11 @@
 
 .login-input {
   padding: 0.75rem;
-  border: 2px solid #00ff00;
-  background: #000000;
-  color: #00ff00;
+  border: 2px solid var(--border-color);
+  background: var(--bg-color);
+  color: var(--primary-color);
   font-size: 1rem;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-primary);
   font-weight: bold;
   text-transform: uppercase;
   transition: all 0.3s ease;
@@ -117,27 +111,28 @@
 
 .login-input:focus {
   outline: none;
-  border-color: #00ffff;
-  color: #00ffff;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-  text-shadow: 0 0 5px #00ffff;
+  border-color: var(--secondary-color);
+  color: var(--secondary-color);
+  box-shadow: 0 0 20px var(--secondary-color);
+  text-shadow: 0 0 5px var(--secondary-color);
 }
 
 .login-input::placeholder {
-  color: #006600;
+  color: var(--primary-color);
   text-transform: uppercase;
   font-weight: bold;
+  opacity: 0.6;
 }
 
 .login-button {
   padding: 0.75rem;
-  border: 2px solid #00ff00;
-  background: #000000;
-  color: #00ff00;
+  border: 2px solid var(--border-color);
+  background: var(--bg-color);
+  color: var(--primary-color);
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-primary);
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 1rem;
@@ -152,8 +147,9 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
   transition: left 0.5s ease;
+  opacity: 0.3;
 }
 
 .login-button:hover::before {
@@ -161,10 +157,10 @@
 }
 
 .login-button:hover {
-  background: #00ff00;
-  color: #000000;
+  background: var(--primary-color);
+  color: var(--bg-color);
   box-shadow: 
-    0 0 30px rgba(0, 255, 0, 0.8),
+    0 0 30px var(--primary-color),
     inset 0 0 20px rgba(0, 0, 0, 0.2);
   transform: scale(1.05);
   text-shadow: none;

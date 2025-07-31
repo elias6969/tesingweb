@@ -1,19 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Courier+New:wght@400;700&family=Comic+Sans+MS:wght@400;700&display=swap');
-
-:root {
-  font-family: 'Courier New', monospace;
-  line-height: 1.3;
-  font-weight: 400;
-  
-  color-scheme: dark;
-  color: #00ff00;
-  background: #000000;
-  
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import './styles/themes.css';
 
 * {
   box-sizing: border-box;
@@ -23,23 +8,14 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #000000 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23001100" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
   overflow-x: auto;
   cursor: crosshair;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(0, 255, 0, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: -1;
+  font-family: var(--font-primary);
+  line-height: 1.3;
+  font-weight: 400;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  transition: all var(--transition-speed) ease;
 }
 
 .app-wrapper {
@@ -48,8 +24,8 @@ body::before {
   padding: 0;
   width: 100%;
   min-height: 100vh;
-  border-left: 2px solid #00ff00;
-  border-right: 2px solid #00ff00;
+  border-left: 2px solid var(--border-color);
+  border-right: 2px solid var(--border-color);
   background: rgba(0, 0, 0, 0.8);
   position: relative;
 }
@@ -60,8 +36,8 @@ body::before {
   top: 0;
   left: 0;
   width: 100%;
-  background: #ff0000;
-  color: #ffffff;
+  background: var(--danger-color);
+  color: var(--text-color);
   text-align: center;
   padding: 2px 0;
   font-size: 10px;
@@ -77,50 +53,50 @@ body::before {
 
 a {
   font-weight: 500;
-  color: #00ffff;
+  color: var(--secondary-color);
   text-decoration: underline;
-  text-shadow: 0 0 5px #00ffff;
+  text-shadow: 0 0 5px var(--secondary-color);
 }
 
 a:hover {
-  color: #ff00ff;
-  text-shadow: 0 0 10px #ff00ff;
+  color: var(--accent-color);
+  text-shadow: 0 0 10px var(--accent-color);
   background: rgba(255, 0, 255, 0.1);
 }
 
 h1 {
   font-size: 2.5em;
   line-height: 1.1;
-  color: #00ff00;
-  text-shadow: 0 0 10px #00ff00;
-  font-family: 'Comic Sans MS', cursive;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--primary-color);
+  font-family: var(--font-secondary);
 }
 
 button {
   border-radius: 0;
-  border: 2px solid #00ff00;
+  border: 2px solid var(--border-color);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: bold;
-  font-family: 'Courier New', monospace;
-  background-color: #000000;
-  color: #00ff00;
+  font-family: var(--font-primary);
+  background-color: var(--bg-color);
+  color: var(--primary-color);
   cursor: pointer;
   transition: all 0.2s;
   text-transform: uppercase;
-  box-shadow: 2px 2px 0px #00ff00;
+  box-shadow: 2px 2px 0px var(--border-color);
 }
 
 button:hover {
-  background-color: #00ff00;
-  color: #000000;
-  box-shadow: 4px 4px 0px #008800;
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  box-shadow: 4px 4px 0px var(--primary-color);
   transform: translate(-2px, -2px);
 }
 
 button:active {
   transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0px #00ff00;
+  box-shadow: 0px 0px 0px var(--border-color);
 }
 
 /* Scrollbar styling */
@@ -129,23 +105,23 @@ button:active {
 }
 
 ::-webkit-scrollbar-track {
-  background: #000000;
-  border: 1px solid #00ff00;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #00ff00;
-  border: 1px solid #000000;
+  background: var(--primary-color);
+  border: 1px solid var(--bg-color);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00ffff;
+  background: var(--secondary-color);
 }
 
 /* Selection styling */
 ::selection {
-  background: #00ff00;
-  color: #000000;
+  background: var(--primary-color);
+  color: var(--bg-color);
 }
 
 /* Glitch effect for text */
@@ -166,13 +142,13 @@ button:active {
 
 .glitch::before {
   animation: glitch-1 0.5s infinite;
-  color: #ff0000;
+  color: var(--danger-color);
   z-index: -1;
 }
 
 .glitch::after {
   animation: glitch-2 0.5s infinite;
-  color: #00ffff;
+  color: var(--secondary-color);
   z-index: -2;
 }
 

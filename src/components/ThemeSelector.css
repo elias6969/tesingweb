@@ -1,0 +1,42 @@
+.theme-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+}
+
+.theme-label {
+  color: var(--accent-color);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.theme-options {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.theme-option {
+  background: transparent;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 1rem;
+  border-radius: 0;
+}
+
+.theme-option:hover {
+  background: var(--accent-color);
+  color: var(--bg-color);
+  transform: scale(1.1);
+}
+
+.theme-option.active {
+  background: var(--accent-color);
+  color: var(--bg-color);
+  box-shadow: 0 0 10px var(--accent-color);
+}

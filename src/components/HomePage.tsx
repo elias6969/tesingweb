@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
+import { useTheme } from "./ThemeContext";
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -7,6 +8,7 @@ const HomePage = () => {
   const [favorites, setFavorites] = useState<number[]>([]);
   const [loading, setLoading] = useState(true);
   const [visitorCount] = useState(() => Math.floor(Math.random() * 50000) + 10000);
+  const { theme } = useTheme();
 
   useEffect(() => {
     fetch("http://localhost:8080/api/tmdb/clean-fetch")
@@ -35,23 +37,71 @@ const HomePage = () => {
     localStorage.setItem("favorites", JSON.stringify(updated));
   };
 
-  const randomMessages = [
-    "🚨 FBI WANTS TO KNOW YOUR LOCATION 🚨",
-    "⚠️ Your ISP has been notified ⚠️",
-    "🎬 FRESH RIPS DAILY 🎬",
-    "💀 DOWNLOAD AT YOUR OWN RISK 💀",
-    "🔥 QUALITY NOT GUARANTEED 🔥",
-    "👁️ SOMEONE IS WATCHING 👁️"
-  ];
+  const getThemeMessages = () => {
+    switch (theme) {
+      case 'futuristic':
+        return [
+          "🤖 NEURAL NETWORK ACTIVE 🤖",
+          "⚡ QUANTUM STREAMING ENABLED ⚡",
+          "🔮 FUTURE TECH PROTOCOLS 🔮",
+          "🛸 ALIEN CONTENT DETECTED 🛸",
+          "💫 CYBERNETIC ENHANCEMENT 💫"
+        ];
+      case 'creepy':
+        return [
+          "👻 SPIRITS IN THE MACHINE 👻",
+          "🩸 BLOOD ON THE SERVERS 🩸",
+          "💀 DEATH AWAITS DOWNLOADERS 💀",
+          "🕷️ CRAWLING WITH MALWARE 🕷️",
+          "🔪 SLASHER FILMS INSIDE 🔪"
+        ];
+      case 'neon':
+        return [
+          "🌃 NEON NIGHTS STREAMING 🌃",
+          "💎 PREMIUM SYNTHWAVE CONTENT 💎",
+          "🎵 RETRO FUTURE VIBES 🎵",
+          "🚗 MIDNIGHT DRIVE MOVIES 🚗",
+          "✨ ELECTRIC DREAMS ACTIVE ✨"
+        ];
+      case 'matrix':
+        return [
+          "💊 TAKE THE RED PILL 💊",
+          "🔢 DIGITAL RAIN FALLING 🔢",
+          "👁️ THE MATRIX HAS YOU 👁️",
+          "🕳️ RABBIT HOLE DETECTED 🕳️",
+          "⚡ REALITY IS AN ILLUSION ⚡"
+        ];
+      default:
+        return [
+          "🚨 FBI WANTS TO KNOW YOUR LOCATION 🚨",
+          "⚠️ Your ISP has been notified ⚠️",
+          "🎬 FRESH RIPS DAILY 🎬",
+          "💀 DOWNLOAD AT YOUR OWN RISK 💀",
+          "🔥 QUALITY NOT GUARANTEED 🔥",
+          "👁️ SOMEONE IS WATCHING 👁️"
+        ];
+    }
+  };
 
-  const [currentMessage, setCurrentMessage] = useState(randomMessages[0]);
+  const [currentMessage, setCurrentMessage] = useState(getThemeMessages()[0]);
 
   useEffect(() => {
+    const messages = getThemeMessages();
     const interval = setInterval(() => {
-      setCurrentMessage(randomMessages[Math.floor(Math.random() * randomMessages.length)]);
+      setCurrentMessage(messages[Math.floor(Math.random() * messages.length)]);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [theme]);
+
+  const getThemeTitle = () => {
+    switch (theme) {
+      case 'futuristic': return '🤖 CYBERFLEX NEO ARCHIVE 🤖';
+      case 'creepy': return '👻 HORROR VAULT UNDERGROUND 👻';
+      case 'neon': return '🌃 NEON STREAM NETWORK 🌃';
+      case 'matrix': return '💊 DIGITAL CINEMA MATRIX 💊';
+      default: return '🕊️ PIGEON FLIX UNDERGROUND 🕊️';
+    }
+  };
 
   return (
     <div className="homepage">
@@ -62,8 +112,8 @@ const HomePage = () => {
       </div>
       
       <div className="header-section">
-        <h1 className="glitch" data-text="🕊️ PIGEON FLIX UNDERGROUND 🕊️">
-          🕊️ PIGEON FLIX UNDERGROUND 🕊️
+        <h1 className="glitch" data-text={getThemeTitle()}>
+          {getThemeTitle()}
         </h1>
         <div className="subtitle">
           <span className="blink">●</span> TOTALLY LEGAL MOVIE ARCHIVE <span className="blink">●</span>
