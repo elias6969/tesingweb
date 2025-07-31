@@ -2,44 +2,78 @@ body.modal-open {
   overflow: hidden;
 }
 
-.movie-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  padding: 1rem;
-}
-
 .movie-card {
-  background-color: #1c1f26;
-  border-radius: 12px;
+  background: linear-gradient(145deg, #001100, #000000);
+  border: 2px solid #00ff00;
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 
+    0 0 20px rgba(0, 255, 0, 0.3),
+    inset 0 0 20px rgba(0, 255, 0, 0.05);
+  transition: all 0.3s ease;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  transform: scale(1);
+  position: relative;
+  font-family: 'Courier New', monospace;
 }
+
+.movie-card::before {
+  content: '🎬 RIP';
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #ff0000;
+  color: #ffffff;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: bold;
+  z-index: 2;
+  border: 1px solid #ffffff;
+}
+
 .movie-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(112, 207, 255, 0.3);
+  transform: scale(1.05) rotate(1deg);
+  box-shadow: 
+    0 0 30px rgba(0, 255, 0, 0.6),
+    0 0 50px rgba(255, 0, 255, 0.3);
+  border-color: #ff00ff;
+}
+
+.movie-card:hover::before {
+  content: '🔥 HOT';
+  background: #ffff00;
+  color: #000000;
+  animation: pulse 0.5s infinite;
 }
 
 .movie-poster {
   width: 100%;
   aspect-ratio: 2 / 3;
   object-fit: cover;
-  border-radius: 12px 12px 0 0;
+  filter: contrast(1.2) saturate(1.3);
+  transition: filter 0.3s ease;
+}
+
+.movie-card:hover .movie-poster {
+  filter: contrast(1.5) saturate(1.5) hue-rotate(10deg);
 }
 
 .movie-info {
-  padding: 0.75rem 1rem 1rem;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.8);
+  border-top: 1px solid #00ff00;
 }
+
 .movie-title {
-  font-size: 1.1rem;
-  color: #70cfff;
+  font-size: 0.9rem;
+  color: #00ff00;
   margin: 0;
   font-weight: bold;
+  text-shadow: 0 0 5px #00ff00;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.2;
 }
 
 .movie-modal-backdrop {
@@ -48,7 +82,15 @@ body.modal-open {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
+  background: 
+    radial-gradient(circle at center, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.95) 100%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 0, 0.03) 2px,
+      rgba(0, 255, 0, 0.03) 4px
+    );
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,68 +99,183 @@ body.modal-open {
 }
 
 .movie-modal {
-  background-color: #1c1f26;
-  border-radius: 16px;
+  background: linear-gradient(145deg, #001100, #000000);
+  border: 3px solid #00ff00;
   padding: 2rem;
-  max-width: 650px;
+  max-width: 700px;
   width: 90%;
-  color: white;
+  color: #ffffff;
   position: relative;
   animation: popIn 0.3s ease;
+  box-shadow: 
+    0 0 50px rgba(0, 255, 0, 0.5),
+    inset 0 0 30px rgba(0, 255, 0, 0.1);
+  font-family: 'Courier New', monospace;
+}
+
+.movie-modal::before {
+  content: '⚠️ PIRATED CONTENT ⚠️';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff0000;
+  color: #ffffff;
+  padding: 3px 15px;
+  font-size: 10px;
+  font-weight: bold;
+  border: 2px solid #ffffff;
+  animation: blink 2s infinite;
 }
 
 .movie-modal-poster {
   width: 100%;
   max-height: 400px;
   object-fit: cover;
-  border-radius: 10px;
   margin-bottom: 1rem;
+  border: 2px solid #00ffff;
+  filter: contrast(1.3) saturate(1.2);
 }
 
 .movie-modal-content h2 {
   margin: 0 0 1rem 0;
-  font-size: 1.8rem;
-  color: #70cfff;
+  font-size: 1.5rem;
+  color: #00ff00;
+  text-shadow: 0 0 10px #00ff00;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'Comic Sans MS', cursive;
 }
 
 .movie-modal-content p {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #ccc;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff;
+  background: rgba(0, 255, 255, 0.05);
+  padding: 1rem;
+  border-left: 3px solid #00ffff;
+  margin: 1rem 0;
 }
 
 .close-button {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  color: #888;
+  background: #ff0000;
+  border: 2px solid #ffffff;
+  font-size: 1.2rem;
+  color: #ffffff;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: all 0.2s;
+  padding: 5px 10px;
+  font-weight: bold;
 }
+
 .close-button:hover {
-  color: #fff;
+  background: #ffffff;
+  color: #ff0000;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #ff0000;
+}
+
+.download-section {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: rgba(255, 0, 0, 0.1);
+  border: 2px solid #ff0000;
+}
+
+.download-section h3 {
+  color: #ff0000;
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.download-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.download-link {
+  background: #000000;
+  color: #00ff00;
+  padding: 8px 12px;
+  border: 1px solid #00ff00;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.download-link:hover {
+  background: #00ff00;
+  color: #000000;
+  box-shadow: 0 0 10px #00ff00;
+  transform: scale(1.05);
 }
 
 /* Animations */
 @keyframes fadeIn {
-  from {
-    background-color: rgba(0, 0, 0, 0);
-  }
-  to {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes popIn {
   from {
-    transform: scale(0.85);
+    transform: scale(0.8) rotate(-5deg);
     opacity: 0;
   }
   to {
-    transform: scale(1);
+    transform: scale(1) rotate(0deg);
     opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Retro CRT effect for modal */
+.movie-modal::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 0, 0.02) 2px,
+    rgba(0, 255, 0, 0.02) 4px
+  );
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .movie-modal {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  .download-links {
+    flex-direction: column;
+  }
+  
+  .movie-modal-content h2 {
+    font-size: 1.2rem;
   }
 }

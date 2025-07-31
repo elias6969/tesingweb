@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './LoginPage.css'; // Reuse styles from login page
+import './LoginPage.css';
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
@@ -10,7 +10,7 @@ const RegisterPage = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("Passwords don't match!");
+      alert("🚨 PASSWORDS DON'T MATCH! TRY AGAIN NOOB! 🚨");
       return;
     }
 
@@ -26,40 +26,65 @@ const RegisterPage = () => {
         throw new Error(text || 'Registration failed');
       }
 
-      alert('Account created! You can now log in.');
+      alert('🎉 WELCOME TO THE UNDERGROUND! YOU CAN NOW LOG IN! 🎉');
     } catch (err: any) {
-      alert(err.message || 'Registration error');
+      alert(`💀 REGISTRATION FAILED: ${err.message || 'Unknown error'} 💀`);
     }
   };
 
   return (
-    <div className="login-page">
-      <h2 className="login-title">Create Your PigeonFlix Account</h2>
-      <form className="login-form" onSubmit={handleRegister}>
-        <input
-          className="login-input"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username"
-        />
-        <input
-          className="login-input"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <input
-          className="login-input"
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          placeholder="Confirm Password"
-        />
-        <button className="login-button" type="submit">
-          Register
-        </button>
-      </form>
+    <div className="login-bg">
+      <div className="login-overlay">
+        <div className="login-box">
+          <h2 className="login-title">🕊️ JOIN THE UNDERGROUND 🕊️</h2>
+          <div style={{ 
+            textAlign: 'center', 
+            color: '#ff0000', 
+            fontSize: '0.8rem', 
+            marginBottom: '1rem',
+            fontWeight: 'bold'
+          }}>
+            ⚠️ INVITATION ONLY ⚠️ NO SNITCHES ⚠️
+          </div>
+          <form className="login-form" onSubmit={handleRegister}>
+            <input
+              className="login-input"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="CODENAME"
+              required
+            />
+            <input
+              className="login-input"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="SECRET CODE"
+              required
+            />
+            <input
+              className="login-input"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="CONFIRM SECRET"
+              required
+            />
+            <button className="login-button" type="submit">
+              INFILTRATE SYSTEM
+            </button>
+          </form>
+          <div style={{ 
+            textAlign: 'center', 
+            color: '#00ffff', 
+            fontSize: '0.7rem', 
+            marginTop: '1rem',
+            fontFamily: 'Courier New, monospace'
+          }}>
+            🔒 BY REGISTERING YOU AGREE TO KEEP THIS SECRET 🔒
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
